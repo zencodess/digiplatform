@@ -103,10 +103,10 @@ class Customer(models.Model):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['email', 'name']
     
-    account_manager = models.OneToOneField(
+    account_manager = models.ForeignKey(
                             AccountManager,
                             on_delete=models.PROTECT,
-                            related_name="account_manager_of")
+            )
     
     class Meta:
         verbose_name = 'customer'
