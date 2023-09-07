@@ -36,12 +36,12 @@ Has many to one relationship with Service Provider (Because one service can be m
 ### Ordering
 Maintains connections between Services and Customers 
 
-Designed custom UserAdmin classe in admin.py and 
-UserCreation and UserChange forms in forms.py and registered models with admin to deploy smoothly.
+![Digital platform's service manager app - Entities and Relations](entity_relation_diagram.png)
 
+Designed custom UserAdmin classe in admin.py and 
+UserCreation and UserChange forms in forms.py and registered models with admin to deploy smoothly and added few tests
 Enabled http://localhost:8000/servicemanager on local machine which can be improved and extended later. 
 
-![Digital platform's service manager app - Entities and Relations](entity_relation_diagram.png)
 ## Steps to run from any computer
 
 1. Clone the repo
