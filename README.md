@@ -5,7 +5,7 @@ A digital platform (CRM model) to offer and manage JePPIX services
 Designed a servicemanager app in digiplatform project using Django (MVT architecture) framework and Python. 
 Developed models and deployed it on local system, added skeletal views and templates. 
 
-## Models
+## Description
 In order to solve the problem as per constraints, designed below models
 
 ### Account Manager
@@ -36,11 +36,12 @@ Has many to one relationship with Service Provider (Because one service can be m
 ### Ordering
 Maintains connections between Services and Customers 
 
+## Entity Relationship Diagram
 ![Digital platform's service manager app - Entities and Relations](entity_relation_diagram.png)
 
 Designed custom UserAdmin classe in admin.py and 
 UserCreation and UserChange forms in forms.py and registered models with admin to deploy smoothly and added few tests
-Enabled http://localhost:8000/servicemanager on local machine which can be improved and extended later. 
+Enabled servicemanager/ URL on local machine which can be improved and extended later. 
 
 ## Steps to run from any computer
 
