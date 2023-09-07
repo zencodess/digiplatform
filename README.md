@@ -1,36 +1,45 @@
 # digiplatform
 A digital platform (CRM model) to offer and manage JePPIX services  
 
-## Intro
-Our Digital Platform provides customers access to services of several companies (service
-providers). On the platform, there are also account managers (users with a specific role), each of them
-manages her own set of service providers. A service provider may be managed by several account
-managers.
-
-## Workflow
-When a new customer comes for JePPIX services, the workflow is organized in the following
-way:
-- An account manager registers the new user account for this customer.
-- The customer creates an order. The complete order is visible to the account manager.
-- The customer fills the order with services from the service providers. However, there’s a
-limitation: she can add services only from those service providers which are managed by her
-account manager.
-- Later, the same customer may create more orders.
-- Later, another account manager may also work with the same customer, and this account
-manager must not see the previous orders of this customer which were managed by the first
-account manager.
-Note: confidentiality of orders and customer relations is extremely important!
+## Intro 
+Designed a servicemanager app in digiplatform project using Django (MVT architecture) framework and Python. 
+Developed models and deployed it on local system, added skeletal views and templates. 
 
 ## Models
+In order to solve the problem as per constraints, designed below models
 
-#### Account Manager
-#### Service Provider
-#### Service
-#### Customer
-#### Ordering
+### Account Manager
+An extension of django's AbstractBaseUser class.  
+Each account manager is uniquely identified by email and is_admin (should be True for account manager objects) feilds. 
+Has the capability to add customers.  
+Can manage services offered by service providers using relations in following classes. 
+Inherits MemberManager interface used to create and manage diffeerent types of users.
 
-## Detailing 
+### Customer
+Each customer is uniquely identified by email and has no special preiviliges. Is an extension of models.Model and can only be created by AccountManager
+Has many to one relationship with Account Manager (as one customer can have only one accoutn manager while account manager can create many customers)
+Has many to many relationship with Service, through Ordering ( One cusotmer can require many services, each service may be required by many customers) 
+Corresponding account manager can be updated using views based on service requirements. 
 
+#### Member Manager
+Interface to create different types of users
+Used by Account Manager, Customer 
+
+### Service Provider
+Uniquely identified by name 
+Has many to one relationship with Account Manager ( one Account Manager can manager multiple Service Providers, but one Service Provider can safely be manager by one Account Manager)
+
+### Service
+Uniquely identified by name and detailed using description feilds. 
+Has many to one relationship with Service Provider (Because one service can be managed by single Service provider while each provider can provide multiple services)
+
+### Ordering
+Maintains connections between Services and Customers 
+
+Designed custom UserAdmin classe in admin.py and 
+UserCreation and UserChange forms in forms.py and registered models with admin to deploy smoothly.
+
+Enabled http://localhost:8000/servicemanager on local machine which can be improved and extended later. 
 
 ![Digital platform's service manager app - Entities and Relations](entity_relation_diagram.png)
 ## Steps to run from any computer
@@ -48,8 +57,7 @@ py manage.py createsuperuser
 Navigate to
 ```
 localhost:8000/ and
-localhost:8000/admin // using super user credentials
-localhost:8000/servicemanager 
+localhost:8000/admin // using super user credentials 
 ```
 
 
